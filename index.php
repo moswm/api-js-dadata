@@ -41,7 +41,7 @@
 
 <div class="backlink"><a href="javascript:history.back();">&laquo; назад (back) &laquo;</a></div>
 
-<h3 style="margin-top:10px;"><?=$headh1?></h3>
+<h3 style="margin-top:10px;">Поиск по ИНН и загрузка данных юридических лиц через API</h3>
 <p>
 	Введите ИНН организации или ИП, данные по которым вы хотите получить. 
 </p>
