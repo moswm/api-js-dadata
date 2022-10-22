@@ -1,9 +1,14 @@
-<?php
+<!DOCTYPE html>
+<!-- by Baev, 2022-->
+<html lang="en">
+<head>
 
-// by Baev, 2022
+<title>РџРѕРёСЃРє РїРѕ РРќРќ Рё Р·Р°РіСЂСѓР·РєР° РґР°РЅРЅС‹С… СЋСЂРёРґРёС‡РµСЃРєРёС… Р»РёС† С‡РµСЂРµР· API</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="author" Content="Baev">
 
-?>
 <script src="api_dadata.js" type="text/javascript"></script>
+
 <style type="text/css">
 .loadbtn { cursor:pointer; background:linear-gradient(#27A2F8,#64B3F1,#27A2F8); border-radius:6px; color:#fff; font-size:11px; font-weight:normal; text-align:center; width: max-content; }
 .leftbtn { float:left; }
@@ -37,33 +42,36 @@
 }
 </style>
 
+</head>
+<body>
+
 <div class="entry-content">
 
-<div class="backlink"><a href="javascript:history.back();">&laquo; назад (back) &laquo;</a></div>
-
-<h3 style="margin-top:10px;">Поиск по ИНН и загрузка данных юридических лиц через API</h3>
+<h3 style="margin-top:10px;">РџРѕРёСЃРє РїРѕ РРќРќ Рё Р·Р°РіСЂСѓР·РєР° РґР°РЅРЅС‹С… СЋСЂРёРґРёС‡РµСЃРєРёС… Р»РёС† С‡РµСЂРµР· API</h3>
 <p>
-	Введите ИНН организации или ИП, данные по которым вы хотите получить. 
+	Р’РІРµРґРёС‚Рµ РРќРќ РѕСЂРіР°РЅРёР·Р°С†РёРё РёР»Рё РРџ, РґР°РЅРЅС‹Рµ РїРѕ РєРѕС‚РѕСЂС‹Рј РІС‹ С…РѕС‚РёС‚Рµ РїРѕР»СѓС‡РёС‚СЊ. 
 </p>
 
 <input type="text" value="" id="forms-inn" style="width:358px; min-width:358px;" class="" maxlength="300" placeholder="" onkeyup="javascript:forms_InputValid(this,'0-9');">
 <div style="clear:both;"></div>
-<div onclick="javascript:forms_LoadFromINN(this);" id="from-innbutton" class="loadbtn leftbtn">Загрузить данные</div><div class="clockloading leftbtn" id="from-innloader" style="margin-left:20px;display:none;"></div>
+<div onclick="javascript:forms_LoadFromINN(this);" id="from-innbutton" class="loadbtn leftbtn">Р—Р°РіСЂСѓР·РёС‚СЊ РґР°РЅРЅС‹Рµ</div><div class="clockloading leftbtn" id="from-innloader" style="margin-left:20px;display:none;"></div>
 <div style="clear:both;"></div>
 <div id="forms-legalentities-data" class="legalentities" style="display:none;"></div>
 
 <p>
-	Технически данный сервис может взаимодействовать с любым API, выдающим по запросу данные организации.
-	<br /><i>Для передачи и получения данных используется формат JSON:</i>
+	РўРµС…РЅРёС‡РµСЃРєРё РґР°РЅРЅС‹Р№ СЃРµСЂРІРёСЃ РјРѕР¶РµС‚ РІР·Р°РёРјРѕРґРµР№СЃС‚РІРѕРІР°С‚СЊ СЃ Р»СЋР±С‹Рј API, РІС‹РґР°СЋС‰РёРј РїРѕ Р·Р°РїСЂРѕСЃСѓ РґР°РЅРЅС‹Рµ РѕСЂРіР°РЅРёР·Р°С†РёРё.
+	<br /><i>Р”Р»СЏ РїРµСЂРµРґР°С‡Рё Рё РїРѕР»СѓС‡РµРЅРёСЏ РґР°РЅРЅС‹С… РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ С„РѕСЂРјР°С‚ JSON:</i>
 </p>
 
 <div id="forms-inn-json" class="nopopup-botlist"></div>
 
-<div class="backlink"><a href="javascript:history.back();">&laquo; назад (back) &laquo;</a></div>
-
 </div>
 <script type="text/javascript">
 function forms_LoadFromINN(efc) {
+	if (api_dadata_token=="") {
+		alert("РќРµРѕР±С…РѕРґРёРјРѕ СѓРєР°Р·Р°С‚СЊ api_dadata_token РІ С„Р°Р№Р»Рµ api_dadata.js. РџРѕР»СѓС‡РёС‚СЊ РµРіРѕ РјРѕР¶РЅРѕ РїРѕСЃР»Рµ СЂРµРіРёСЃС‚СЂР°С†РёРё РІ СЃРµСЂРІРёСЃРµ dadata.ru.");
+		return;
+	}
 	efc.classList.add('disabledbtn');
 	document.getElementById("from-innloader").style.display="block";
 	api_dadata_LoadFromINN(efc,encodeHtml(document.getElementById('forms-inn').value),'forms_LoadFromINN_exec');
@@ -74,15 +82,15 @@ function forms_LoadFromINN_exec(efc,jsondata) {
 	let DataFromINN = JSON.parse(jsondata);
 	if (DataFromINN.suggestions.length) {
 		databody.innerHTML='\
-			Наименование: <b>'+DataFromINN.suggestions[0].value+'</b><br />\
-			КПП: <b>'+DataFromINN.suggestions[0].data.kpp+'</b><br />\
-			ОГРН: <b>'+DataFromINN.suggestions[0].data.ogrn+'</b><br />\
-			Юр.адрес: <b>'+DataFromINN.suggestions[0].data.address.value+'</b><br />\
+			РќР°РёРјРµРЅРѕРІР°РЅРёРµ: <b>'+DataFromINN.suggestions[0].value+'</b><br />\
+			РљРџРџ: <b>'+DataFromINN.suggestions[0].data.kpp+'</b><br />\
+			РћР“Р Рќ: <b>'+DataFromINN.suggestions[0].data.ogrn+'</b><br />\
+			Р®СЂ.Р°РґСЂРµСЃ: <b>'+DataFromINN.suggestions[0].data.address.value+'</b><br />\
 		';
 		databody.style.display="block";
 	} else {
 		databody.style.display="none";
-		alert("Нет данных по организации и ИП. Проверьте правильность ввода ИНН.");
+		alert("РќРµС‚ РґР°РЅРЅС‹С… РїРѕ РѕСЂРіР°РЅРёР·Р°С†РёРё Рё РРџ. РџСЂРѕРІРµСЂСЊС‚Рµ РїСЂР°РІРёР»СЊРЅРѕСЃС‚СЊ РІРІРѕРґР° РРќРќ.");
 		document.getElementById('forms-inn').focus();
 		document.getElementById('forms-inn').select();
 	}
@@ -97,3 +105,6 @@ function forms_InputValid(evnt,keymask) {
 	if (keymask=="0-9") evnt.value = evnt.value.replace(/[^0-9]/g,"");
 }
 </script>
+	
+</body>
+</html>

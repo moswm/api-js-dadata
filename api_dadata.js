@@ -3,7 +3,7 @@
 
 var api_dadata_INNurl="https://suggestions.dadata.ru/suggestions/api/4_1/rs/findById/party";
 var api_dadata_BIKurl="https://suggestions.dadata.ru/suggestions/api/4_1/rs/findById/bank";
-var api_dadata_token="[token]";
+var api_dadata_token="";
 
 function api_dadata_xhr(url,jsonstr) {
 	return new Promise(function (resolve, reject) {
