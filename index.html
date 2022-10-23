@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<!-- by Baev, 2022-->
 <html lang="en">
 <head>
 
-<title>Поиск по ИНН и загрузка данных юридических лиц через API</title>
+<title>Search by TIN and upload data of legal entities via API</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="author" Content="Baev">
 
@@ -47,20 +46,20 @@
 
 <div class="entry-content">
 
-<h3 style="margin-top:10px;">Поиск по ИНН и загрузка данных юридических лиц через API</h3>
+<h3 style="margin-top:10px;">Search by TIN and upload data of legal entities via API</h3>
 <p>
-	Введите ИНН организации или ИП, данные по которым вы хотите получить. 
+	Enter the TIN of the organization or individual entrepreneur for which you want to receive data.
 </p>
 
 <input type="text" value="" id="forms-inn" style="width:358px; min-width:358px;" class="" maxlength="300" placeholder="" onkeyup="javascript:forms_InputValid(this,'0-9');">
 <div style="clear:both;"></div>
-<div onclick="javascript:forms_LoadFromINN(this);" id="from-innbutton" class="loadbtn leftbtn">Загрузить данные</div><div class="clockloading leftbtn" id="from-innloader" style="margin-left:20px;display:none;"></div>
+<div onclick="javascript:forms_LoadFromINN(this);" id="from-innbutton" class="loadbtn leftbtn">Get data</div><div class="clockloading leftbtn" id="from-innloader" style="margin-left:20px;display:none;"></div>
 <div style="clear:both;"></div>
 <div id="forms-legalentities-data" class="legalentities" style="display:none;"></div>
 
 <p>
-	Технически данный сервис может взаимодействовать с любым API, выдающим по запросу данные организации.
-	<br /><i>Для передачи и получения данных используется формат JSON:</i>
+	Technically, this service can interact with any API that provides organization data upon request.
+	<br /><i>The JSON format is used to send and receive data:</i>
 </p>
 
 <div id="forms-inn-json" class="nopopup-botlist"></div>
@@ -69,7 +68,7 @@
 <script type="text/javascript">
 function forms_LoadFromINN(efc) {
 	if (api_dadata_token=="") {
-		alert("Необходимо указать api_dadata_token в файле api_dadata.js. Получить его можно после регистрации в сервисе dadata.ru.");
+		alert("The api_dadata_token must be specified in the api_dadata.js file. You can get it after registering in the dadata.ru service.");
 		return;
 	}
 	efc.classList.add('disabledbtn');
@@ -82,15 +81,15 @@ function forms_LoadFromINN_exec(efc,jsondata) {
 	let DataFromINN = JSON.parse(jsondata);
 	if (DataFromINN.suggestions.length) {
 		databody.innerHTML='\
-			Наименование: <b>'+DataFromINN.suggestions[0].value+'</b><br />\
-			КПП: <b>'+DataFromINN.suggestions[0].data.kpp+'</b><br />\
-			ОГРН: <b>'+DataFromINN.suggestions[0].data.ogrn+'</b><br />\
-			Юр.адрес: <b>'+DataFromINN.suggestions[0].data.address.value+'</b><br />\
+			Name: <b>'+DataFromINN.suggestions[0].value+'</b><br />\
+			KPP: <b>'+DataFromINN.suggestions[0].data.kpp+'</b><br />\
+			OGRN: <b>'+DataFromINN.suggestions[0].data.ogrn+'</b><br />\
+			Legal address: <b>'+DataFromINN.suggestions[0].data.address.value+'</b><br />\
 		';
 		databody.style.display="block";
 	} else {
 		databody.style.display="none";
-		alert("Нет данных по организации и ИП. Проверьте правильность ввода ИНН.");
+		alert("There is no data on the organization and individual entrepreneur. Check the correctness of entering the TIN.");
 		document.getElementById('forms-inn').focus();
 		document.getElementById('forms-inn').select();
 	}
