@@ -1,0 +1,30 @@
+.loadbtn { cursor:pointer; background:linear-gradient(#27A2F8,#64B3F1,#27A2F8); border-radius:6px; color:#fff; font-size:11px; font-weight:normal; text-align:center; width: max-content; }
+.leftbtn { float:left; }
+.disabledbtn { cursor:default; background:linear-gradient(#929292,#A8A8A8,#929292); }
+.clockloading { width:26px; height:24px; background: url('clock_white-30.gif') left top no-repeat; }
+.loadbtn {
+	margin:10px 0;
+	padding:6px 25px;
+}
+.clockloading {
+	margin:12px 0;
+}
+.legalentities {
+	border:1px dashed #9A9A9A;
+	border-radius:3px;
+	padding:5px 10px;
+	font-size:14px !important;
+	font-weight:normal !important;
+}
+.nopopup-botlist {
+	margin-top:3px;
+	background-color:#fff;
+	color:#555;
+	padding:1px 4px;
+	z-index:1;
+	border:1px dashed #9A9A9A;
+	border-radius:3px;
+	height:300px;
+	width:auto;
+	overflow-y:scroll;
+}
